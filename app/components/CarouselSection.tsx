@@ -4,14 +4,14 @@ import Image from "next/image";
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const images = {
+  green: "/Headphones/Color=green.png",
+  yellow: "/Headphones/Color=yellow.png",
+  red: "/Headphones/Color=red.png",
+};
+
 export default function CarouselSection() {
   const [selectedColor, setSelectedColor] = useState<"green" | "yellow" | "red">("green");
-
-  const images = {
-    green: "/Headphones/Color=green.png",
-    yellow: "/Headphones/Color=yellow.png",
-    red: "/Headphones/Color=red.png",
-  };
 
   const { leftImage, rightImage } = useMemo(() => {
     const colors: ("green" | "yellow" | "red")[] = ["green", "yellow", "red"];
@@ -20,7 +20,7 @@ export default function CarouselSection() {
       leftImage: images[others[0]],
       rightImage: images[others[1]],
     };
-  }, [selectedColor]);
+  }, [selectedColor]); // ✅ ESLint endi jim bo‘ladi
 
   return (
     <section className="w-full max-w-[1280px] h-[1132px] flex flex-col items-center gap-6 py-20 mx-auto">
