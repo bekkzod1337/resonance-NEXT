@@ -10,7 +10,12 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="relative z-50 w-full h-[92px] mx-auto flex items-center justify-between px-6 rounded-[24px] max-w-[1280px]">
+    <motion.header
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="relative z-50 w-full h-[92px] mx-auto flex items-center justify-between px-6 rounded-[24px] max-w-[1280px]"
+    >
       {/* Logo */}
       <div className="flex items-center gap-[8px] w-fit h-[26px] relative z-50">
         <div className="w-[140px] h-[26px] relative">
@@ -70,9 +75,9 @@ export default function Header() {
         {isMobileMenuOpen && (
           <motion.div
             key="mobile-menu"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
             className="absolute top-[92px] left-0 w-full bg-[#F5F5F5] flex flex-col items-center gap-6 py-6 shadow-md rounded-b-[24px] md:hidden z-40"
           >
@@ -90,6 +95,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

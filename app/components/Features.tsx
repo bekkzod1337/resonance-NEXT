@@ -37,24 +37,32 @@ export default function FeaturesSwiperSection() {
         pagination={{ clickable: true }}
         spaceBetween={24}
         slidesPerView={1}
-        grabCursor={true}
         loop={true}
+        grabCursor={true}
+        breakpoints={{
+          768: {
+            slidesPerView: 1.1,
+          },
+          1024: {
+            slidesPerView: 1.2,
+          },
+        }}
         className="w-full"
       >
         {featureData.map((feature, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={feature.image + index}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, scale: 0.95, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative w-full h-[568px] rounded-[24px] overflow-hidden"
+              className="relative w-full h-[400px] md:h-[568px] rounded-[24px] overflow-hidden shadow-xl"
             >
               <Image
                 src={feature.image}
                 alt={`Feature ${index + 1}`}
                 fill
-                className="object-contain"
+                className="object-cover transition-all duration-500"
               />
             </motion.div>
           </SwiperSlide>
